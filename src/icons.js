@@ -10,6 +10,7 @@ export function icon(name, size = 20) {
     trending: `<svg ${attrs}><path d="M3 17 9 11l4 4 8-8"/><path d="M14 7h7v7"/></svg>`,
     calendar: `<svg ${attrs}><path d="M8 2v4M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01"/></svg>`,
     arrow: `<svg ${attrs}><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>`,
+    play: `<svg ${attrs}><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4V8Z"/></svg>`,
   };
 
   return icons[name] ?? '';

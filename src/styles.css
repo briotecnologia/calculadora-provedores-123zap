@@ -116,6 +116,23 @@ a {
   width: fit-content;
 }
 
+.button-secondary {
+  background: #ffffff;
+  border: 1px solid var(--slate-300);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  color: var(--slate-800);
+}
+
+.button-secondary svg {
+  color: var(--purple);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .hero-section {
   align-items: start;
   display: grid;
@@ -627,6 +644,15 @@ tbody th {
 
   .hero-section {
     padding-top: 28px;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero-actions .button {
+    width: 100%;
   }
 
   h1 {

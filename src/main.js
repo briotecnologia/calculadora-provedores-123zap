@@ -36,10 +36,21 @@ function render() {
             A 123zap reduz atrasos no pagamento e diminui a pressão no suporte técnico,
             lembrando o assinante no WhatsApp antes do bloqueio.
           </p>
-          <a class="button button-large" href="https://123zap.com.br/" target="_blank" rel="noreferrer">
-            ${icon('message', 21)}
-            Falar com a 123zap
-          </a>
+          <div class="hero-actions">
+            <a class="button button-large" href="https://123zap.com.br/" target="_blank" rel="noreferrer">
+              ${icon('message', 21)}
+              Falar com a 123zap
+            </a>
+            <a
+              class="button button-large button-secondary"
+              href="https://youtu.be/aGFc7bdCrCw?si=3p8E9xBlfSG-8NHN"
+              target="_blank"
+              rel="noreferrer"
+            >
+              ${icon('play', 21)}
+              Assistir demo
+            </a>
+          </div>
           <div class="trust-row" aria-label="Benefícios">
             <span>${icon('message', 20)} Lembretes via WhatsApp</span>
             <span>${icon('shield', 20)} Menos inadimplência</span>
