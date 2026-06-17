@@ -29,10 +29,9 @@ function render() {
 
       <section id="top" class="hero-section">
         <div class="hero-copy">
-          <h1>Calculadora Provedores — 123zap</h1>
-          <p class="hero-subtitle">
+          <h1>
             Veja quanto a 123zap pode reduzir em atrasos de pagamento e contatos no suporte técnico.
-          </p>
+          </h1>
           <p class="hero-support">
             A 123zap reduz atrasos no pagamento e diminui a pressão no suporte técnico,
             lembrando o assinante no WhatsApp antes do bloqueio.
