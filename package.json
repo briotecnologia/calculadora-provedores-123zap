@@ -1,0 +1,12 @@
+{
+  "name": "calculadora-provedores-123zap",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 5173 --bind 127.0.0.1",
+    "build": "node --check src/main.js && node scripts/build-sites.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
