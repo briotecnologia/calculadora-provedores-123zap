@@ -769,6 +769,7 @@ tbody th {
     font-size: clamp(30px, 8.2vw, 36px);
   }
 
+  .summary-charts,
   .inputs-grid,
   .summary-grid {
     grid-template-columns: 1fr;

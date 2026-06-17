@@ -28,7 +28,7 @@ export function DynamicMessage(inputs, results, isValid) {
         </ul>
         <p class="dynamic-footer">
           Cálculo feito na Calculadora de Provedores 123zap<br />
-          acesse: https://briotecnologia.github.io/calculadora-provedores-123zap/
+          acesse: https://provedores.123zap.com.br/
         </p>
       </div>
     </section>
