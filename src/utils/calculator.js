@@ -13,7 +13,7 @@ export const IMPROVEMENT_OPTIONS = [
 ];
 
 export const SUPPORT_WITHOUT_123ZAP = 0.15;
-export const SUPPORT_WITH_123ZAP = 0.08;
+export const SUPPORT_WITH_123ZAP = 0.15;
 
 export const DEFAULT_INPUTS = {
   recurringCustomers: 500,

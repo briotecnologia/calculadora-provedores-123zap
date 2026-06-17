@@ -1,18 +1,34 @@
 import { InputsCalculator } from './components/InputsCalculator.js';
-import { SummaryCards } from './components/SummaryCards.js';
 import { ResultsTable } from './components/ResultsTable.js';
 import { DynamicMessage } from './components/DynamicMessage.js';
-import { Charts } from './components/Charts.js';
-import { calculateResults, DEFAULT_INPUTS, validateInputs } from './utils/calculator.js';
-import { formatInteger, formatPercent } from './utils/formatters.js';
+import { calculateResults, DEFAULT_INPUTS, validateInputs, IMPROVEMENT_OPTIONS } from './utils/calculator.js';
+import { formatCurrency, formatInteger, formatPercent } from './utils/formatters.js';
 import { icon } from './icons.js';
 
 const state = { ...DEFAULT_INPUTS };
 const root = document.getElementById('root');
 
+let activeField = null;
+let activeCaret = 0;
+
+function bar(label, formatted, value, other, className) {
+  const max = Math.max(value, other, 1);
+  const height = Math.max((value / max) * 100, 4);
+  return `
+    <div class="bar-column">
+      <strong>${formatted}</strong>
+      <span class="bar ${className}" style="height: ${height}%"></span>
+      <em>${label}</em>
+    </div>
+  `;
+}
+
 function render() {
   const validation = validateInputs(state);
   const results = calculateResults(state);
+
+  const restoreField = activeField;
+  const restoreCaret = activeCaret;
 
   root.innerHTML = `
     <main class="app-shell">
@@ -71,7 +87,31 @@ function render() {
                   .join('')}</div>`
               : ''
           }
-          ${SummaryCards(results, validation.isValid)}
+          <div class="summary-charts">
+            <article class="chart-card">
+              <h2>Valor mensal em atraso</h2>
+              <div class="chart-area">
+                ${bar('Sem a 123zap', formatCurrency(results.monthlyLateBefore), results.monthlyLateBefore, results.monthlyLateAfter, 'bar-before')}
+                ${bar('Com 123zap', formatCurrency(results.monthlyLateAfter), results.monthlyLateAfter, results.monthlyLateBefore, 'bar-after')}
+              </div>
+            </article>
+            <article class="chart-card">
+              <h2>Clientes que acionam suporte</h2>
+              <div class="chart-area">
+                ${bar('Sem a 123zap', formatInteger(results.supportCustomersBefore), results.supportCustomersBefore, results.supportCustomersAfter, 'bar-before')}
+                ${bar('Com 123zap', formatInteger(results.supportCustomersAfter), results.supportCustomersAfter, results.supportCustomersBefore, 'bar-after')}
+              </div>
+            </article>
+          </div>
+
+          <div class="summary-notes">
+            <strong>Resumo da simulação atual</strong>
+            <span>
+              ${formatInteger(results.lateCustomersBefore)} clientes em atraso hoje podem cair para
+              ${formatInteger(results.lateCustomersAfter)} com a 123zap com o cenário
+              "${IMPROVEMENT_OPTIONS.find(o => o.value === state.paymentImprovement)?.label ?? state.paymentImprovement}".
+            </span>
+          </div>
         </section>
       </section>
 
@@ -80,10 +120,27 @@ function render() {
       </section>
 
       <section class="message-and-charts">
-        <div id="graficos" class="charts-wrap">
-          ${Charts(results)}
-        </div>
         ${DynamicMessage(state, results, validation.isValid)}
+      </section>
+
+      <section class="benefits-section">
+        <div class="summary-grid ${!validation.isValid ? 'summary-muted' : ''}">
+          <article class="summary-card" id="card-valor-mensal-liberado" data-tone="purple">
+            <div class="summary-icon">${icon('trending', 26)}</div>
+            <strong>${formatCurrency(results.monthlyImprovement)}</strong>
+            <span>Valor mensal liberado</span>
+          </article>
+          <article class="summary-card" id="card-reducao-no-suporte" data-tone="slate">
+            <div class="summary-icon">${icon('headphones', 26)}</div>
+            <strong>${formatInteger(results.supportReduction)} contatos</strong>
+            <span>Redução no suporte</span>
+          </article>
+          <article class="summary-card" id="card-valor-anual-potencial" data-tone="purple">
+            <div class="summary-icon">${icon('trending', 26)}</div>
+            <strong>${formatCurrency(results.annualImprovement)}</strong>
+            <span>Valor anual potencial</span>
+          </article>
+        </div>
       </section>
 
       <section class="assumptions" aria-label="Premissas fixas da calculadora">
@@ -92,37 +149,79 @@ function render() {
           <strong>Premissas fixas de suporte técnico</strong>
         </div>
         <p>
-          Contato suporte sem 123zap: ${formatPercent(0.15)}. Contato suporte com 123zap:
-          ${formatPercent(0.08)}.
+          Contato suporte: ${formatPercent(0.15)} dos inadimplentes.
         </p>
       </section>
 
       <footer class="footer">
-        <div>
-          <strong>Resumo da simulação atual</strong>
-          <span>
-            ${formatInteger(results.lateCustomersBefore)} clientes em atraso hoje podem cair para
-            ${formatInteger(results.lateCustomersAfter)} com a 123zap.
-          </span>
-        </div>
-        <a href="#calculadora">Recalcular ${icon('arrow', 16)}</a>
+        <span>123zap, uma empresa da Brio Soluções em Tecnologia LTDA, CNPJ 49.701.005/0001-30</span>
       </footer>
     </main>
   `;
 
   bindEvents();
+
+  activeField = null;
+
+  if (restoreField) {
+    const el = root.querySelector(`[data-field="${restoreField}"]`);
+    if (el) {
+      el.focus();
+      if (el.tagName !== 'SELECT') el.setSelectionRange(restoreCaret, restoreCaret);
+    }
+  }
+}
+
+function handleFieldEvent(event) {
+  const el = event.currentTarget;
+  activeField = el.dataset.field;
+  const value = el.tagName === 'SELECT' ? el.value : el.value.replace(el.inputmode === 'numeric' ? /[^0-9]/g : /[^0-9.]/g, '');
+  activeCaret = el.selectionStart || value.length;
+  if (el.tagName !== 'SELECT' && value !== el.value) {
+    el.value = value;
+  }
+  state[activeField] = value;
+  render();
 }
 
 function bindEvents() {
   root.querySelectorAll('[data-field]').forEach((field) => {
-    field.addEventListener('input', (event) => {
-      state[event.currentTarget.dataset.field] = event.currentTarget.value;
-      render();
-    });
-    field.addEventListener('change', (event) => {
-      state[event.currentTarget.dataset.field] = event.currentTarget.value;
-      render();
-    });
+    field.addEventListener('input', handleFieldEvent);
+    field.addEventListener('change', handleFieldEvent);
+  });
+
+  root.querySelector('[data-copy]')?.addEventListener('click', (event) => {
+    const key = event.currentTarget.dataset.copy;
+    const source = root.querySelector(`[data-copy-text="${key}"]`);
+    if (!source) return;
+
+    const parts = [];
+    for (const child of source.children) {
+      if (child.tagName === 'P') {
+        parts.push(child.textContent.trim());
+      } else if (child.tagName === 'UL') {
+        for (const li of child.children) {
+          parts.push('• ' + li.textContent.trim());
+        }
+      }
+    }
+    const text = parts.join('\n\n');
+    navigator.clipboard.writeText(text).catch(() => {});
+
+    const btn = event.currentTarget;
+    btn.innerHTML = icon('check', 18);
+    btn.classList.add('copy-btn--done');
+
+    const tooltip = document.createElement('span');
+    tooltip.className = 'copy-tooltip';
+    tooltip.textContent = 'Copiado!';
+    btn.appendChild(tooltip);
+    requestAnimationFrame(() => tooltip.classList.add('copy-tooltip--visible'));
+
+    setTimeout(() => {
+      btn.innerHTML = icon('clipboard', 18);
+      btn.classList.remove('copy-btn--done');
+    }, 2000);
   });
 }
 
