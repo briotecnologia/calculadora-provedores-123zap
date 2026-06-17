@@ -15,6 +15,7 @@ const publicFiles = [
   'src/components/DynamicMessage.js',
   'src/components/Charts.js',
   'public/screenshot.jpeg',
+  'assets/logo-principal-escura.svg',
 ];
 
 const mimeTypes = {

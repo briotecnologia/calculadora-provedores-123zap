@@ -7,19 +7,19 @@ export function SummaryCards(results, isValid) {
       title: 'Valor mensal liberado',
       value: formatCurrency(results.monthlyImprovement),
       iconName: 'banknote',
-      tone: 'green',
+      tone: 'purple',
     },
     {
       title: 'Redução no suporte',
       value: `${formatInteger(results.supportReduction)} contatos`,
       iconName: 'headphones',
-      tone: 'blue',
+      tone: 'slate',
     },
     {
       title: 'Valor anual potencial',
       value: formatCurrency(results.annualImprovement),
       iconName: 'trending',
-      tone: 'green',
+      tone: 'purple',
     },
   ];
 

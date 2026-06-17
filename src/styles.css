@@ -1,17 +1,29 @@
 :root {
-  --green: #0ea64b;
-  --green-dark: #067a37;
-  --green-soft: #e9f9ef;
-  --charcoal: #101828;
-  --ink: #1f2937;
-  --muted: #667085;
-  --line: #dbe3ea;
+  --purple: #9333ea;
+  --purple-dark: #7e22ce;
+  --purple-deep: #6b21a8;
+  --purple-soft: #f3e8ff;
+  --purple-mist: #faf5ff;
+  --slate-950: #020617;
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+  --charcoal: var(--slate-950);
+  --ink: var(--slate-800);
+  --muted: var(--slate-500);
+  --line: var(--slate-200);
   --panel: #ffffff;
-  --page: #f6f8f9;
-  --blue: #0f62c9;
-  --warning: #b54708;
+  --page: var(--slate-50);
+  --warning: #c2410c;
   --warning-bg: #fff7ed;
-  --shadow: 0 18px 50px rgba(16, 24, 40, 0.09);
+  --shadow: 0 18px 50px rgba(15, 23, 42, 0.09);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--charcoal);
@@ -29,8 +41,9 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 88% 8%, rgba(14, 166, 75, 0.08), transparent 28%),
-    linear-gradient(180deg, #ffffff 0%, #f6f8f9 46%, #eef7f1 100%);
+    radial-gradient(circle at 88% 8%, rgba(147, 51, 234, 0.11), transparent 28%),
+    radial-gradient(circle at 14% 46%, rgba(216, 180, 254, 0.16), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, var(--slate-50) 46%, #f6f3ff 100%);
 }
 
 a {
@@ -57,19 +70,13 @@ a {
 .brand {
   align-items: center;
   display: inline-flex;
-  font-size: 30px;
-  font-weight: 850;
-  line-height: 1;
+  height: 42px;
 }
 
-.brand span span {
-  color: var(--green);
-}
-
-.brand-mark {
-  color: var(--green);
-  display: inline-flex;
-  margin-right: 8px;
+.brand img {
+  display: block;
+  height: 34px;
+  width: auto;
 }
 
 .nav-links {
@@ -80,15 +87,15 @@ a {
 }
 
 .nav-links a {
-  color: #344054;
+  color: var(--slate-700);
 }
 
 .button {
   align-items: center;
-  background: linear-gradient(180deg, #17bd59, var(--green));
+  background: linear-gradient(180deg, #a855f7, var(--purple));
   border: 0;
   border-radius: 8px;
-  box-shadow: 0 12px 28px rgba(14, 166, 75, 0.24);
+  box-shadow: 0 12px 28px rgba(147, 51, 234, 0.24);
   color: #ffffff;
   display: inline-flex;
   font-weight: 800;
@@ -139,7 +146,7 @@ h1 {
 }
 
 .hero-subtitle {
-  color: #4a5568;
+  color: var(--slate-700);
   font-size: clamp(20px, 2.15vw, 25px);
   font-weight: 680;
   line-height: 1.22;
@@ -147,7 +154,7 @@ h1 {
 }
 
 .hero-support {
-  color: #344054;
+  color: var(--slate-700);
   font-size: 18px;
   line-height: 1.45;
   margin: 30px 0;
@@ -163,7 +170,7 @@ h1 {
 
 .trust-row span {
   align-items: center;
-  color: #475467;
+  color: var(--slate-600);
   display: inline-flex;
   font-size: 14px;
   gap: 8px;
@@ -171,7 +178,7 @@ h1 {
 }
 
 .trust-row svg {
-  color: var(--green);
+  color: var(--purple);
   flex: 0 0 auto;
 }
 
@@ -222,7 +229,7 @@ h1 {
 }
 
 .field > span {
-  color: #1d2939;
+  color: var(--slate-800);
   font-size: 15px;
   font-weight: 760;
 }
@@ -231,7 +238,7 @@ h1 {
 .select-shell {
   align-items: center;
   background: #ffffff;
-  border: 1px solid #cfd8e3;
+  border: 1px solid var(--slate-300);
   border-radius: 8px;
   display: flex;
   min-height: 48px;
@@ -241,19 +248,19 @@ h1 {
 
 .input-shell:focus-within,
 .select-shell:focus-within {
-  border-color: var(--green);
-  box-shadow: 0 0 0 4px rgba(14, 166, 75, 0.12);
+  border-color: var(--purple);
+  box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.13);
 }
 
 .input-shell svg {
-  color: #667085;
+  color: var(--slate-500);
 }
 
 input,
 select {
   background: transparent;
   border: 0;
-  color: #101828;
+  color: var(--slate-900);
   font: inherit;
   font-size: 16px;
   min-width: 0;
@@ -302,8 +309,8 @@ input {
 
 .summary-card {
   align-items: center;
-  background: linear-gradient(180deg, #ffffff, #f5fbf8);
-  border: 1px solid #d8ebe0;
+  background: linear-gradient(180deg, #ffffff, var(--purple-mist));
+  border: 1px solid #e9d5ff;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -313,14 +320,14 @@ input {
   text-align: center;
 }
 
-.summary-card[data-tone="blue"] {
-  background: linear-gradient(180deg, #ffffff, #f4f8ff);
-  border-color: #d8e5fb;
+.summary-card[data-tone="slate"] {
+  background: linear-gradient(180deg, #ffffff, var(--slate-50));
+  border-color: var(--slate-200);
 }
 
 .summary-icon {
   align-items: center;
-  background: var(--green);
+  background: var(--purple);
   border-radius: 8px;
   color: #ffffff;
   display: flex;
@@ -330,22 +337,22 @@ input {
   width: 50px;
 }
 
-.summary-card[data-tone="blue"] .summary-icon {
-  background: var(--blue);
+.summary-card[data-tone="slate"] .summary-icon {
+  background: var(--slate-800);
 }
 
 .summary-card strong {
-  color: var(--green-dark);
+  color: var(--purple-dark);
   font-size: clamp(22px, 2.3vw, 28px);
   line-height: 1.1;
 }
 
-.summary-card[data-tone="blue"] strong {
-  color: var(--blue);
+.summary-card[data-tone="slate"] strong {
+  color: var(--slate-800);
 }
 
 .summary-card span {
-  color: #1f2937;
+  color: var(--slate-800);
   font-size: 15px;
   font-weight: 800;
   margin-top: 7px;
@@ -389,15 +396,15 @@ table {
 
 th,
 td {
-  border-bottom: 1px solid #e5eaf0;
+  border-bottom: 1px solid var(--slate-200);
   font-size: 15px;
   padding: 15px 16px;
   text-align: right;
 }
 
 thead th {
-  background: #f1f4f7;
-  color: #344054;
+  background: var(--slate-100);
+  color: var(--slate-700);
   font-size: 13px;
   font-weight: 850;
 }
@@ -416,18 +423,18 @@ thead th:first-child {
 }
 
 tbody th {
-  color: #1f2937;
+  color: var(--slate-800);
   font-weight: 760;
 }
 
 .improvement-cell {
-  background: var(--green-soft);
-  color: var(--green-dark);
+  background: var(--purple-soft);
+  color: var(--purple-deep);
   font-weight: 900;
 }
 
 .muted-cell {
-  color: #98a2b3;
+  color: var(--slate-400);
   font-weight: 800;
 }
 
@@ -451,7 +458,7 @@ tbody th {
 
 .chart-area {
   align-items: end;
-  border-bottom: 1px solid #dbe3ea;
+  border-bottom: 1px solid var(--slate-200);
   display: grid;
   gap: 28px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -469,7 +476,7 @@ tbody th {
 }
 
 .bar-column strong {
-  color: #1d2939;
+  color: var(--slate-800);
   font-size: 13px;
   font-weight: 850;
   white-space: nowrap;
@@ -484,15 +491,15 @@ tbody th {
 }
 
 .bar-before {
-  background: linear-gradient(180deg, #9aa4b2, #6b7280);
+  background: linear-gradient(180deg, var(--slate-400), var(--slate-600));
 }
 
 .bar-after {
-  background: linear-gradient(180deg, #20c362, var(--green));
+  background: linear-gradient(180deg, #c084fc, var(--purple));
 }
 
 .bar-column em {
-  color: #475467;
+  color: var(--slate-600);
   font-size: 12px;
   font-style: normal;
   font-weight: 750;
@@ -501,7 +508,7 @@ tbody th {
 }
 
 .dynamic-panel {
-  background: linear-gradient(135deg, #ffffff 0%, #f0fbf4 100%);
+  background: linear-gradient(135deg, #ffffff 0%, var(--purple-mist) 100%);
   min-height: 285px;
   overflow: hidden;
   padding: 28px;
@@ -509,14 +516,14 @@ tbody th {
 }
 
 .dynamic-panel h2 {
-  color: var(--green-dark);
+  color: var(--purple-deep);
   margin-bottom: 16px;
   position: relative;
   z-index: 1;
 }
 
 .dynamic-panel p {
-  color: #344054;
+  color: var(--slate-700);
   font-size: 17px;
   line-height: 1.55;
   max-width: 590px;
@@ -525,12 +532,12 @@ tbody th {
 }
 
 .dynamic-panel strong {
-  color: var(--green-dark);
+  color: var(--purple-deep);
 }
 
 .dynamic-icon {
   bottom: 22px;
-  color: rgba(14, 166, 75, 0.14);
+  color: rgba(147, 51, 234, 0.13);
   position: absolute;
   right: 28px;
   transform: scale(2.2);
@@ -561,7 +568,7 @@ tbody th {
 }
 
 .assumptions svg {
-  color: var(--green);
+  color: var(--purple);
 }
 
 .assumptions p {
@@ -571,7 +578,7 @@ tbody th {
 
 .footer {
   align-items: center;
-  color: #475467;
+  color: var(--slate-600);
   display: flex;
   justify-content: space-between;
   padding: 28px clamp(20px, 4vw, 58px) 38px;
@@ -583,12 +590,12 @@ tbody th {
 }
 
 .footer strong {
-  color: #101828;
+  color: var(--slate-900);
 }
 
 .footer a {
   align-items: center;
-  color: var(--green-dark);
+  color: var(--purple-dark);
   display: inline-flex;
   font-weight: 850;
   gap: 4px;

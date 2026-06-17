@@ -18,8 +18,7 @@ function render() {
     <main class="app-shell">
       <header class="topbar" aria-label="Cabeçalho principal">
         <a class="brand" href="#top" aria-label="123zap">
-          <span class="brand-mark">${icon('message', 26)}</span>
-          <span>123<span>zap</span></span>
+          <img src="./assets/logo-principal-escura.svg" alt="123zap" />
         </a>
         <nav class="nav-links" aria-label="Navegação">
           <a href="#calculadora">Calculadora</a>
