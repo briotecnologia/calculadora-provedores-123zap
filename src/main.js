@@ -30,7 +30,7 @@ function render() {
       <section id="top" class="hero-section">
         <div class="hero-copy">
           <h1>
-            Veja quanto a 123zap pode reduzir em atrasos de pagamento e contatos no suporte técnico.
+            Veja quanto a 123zap pode reduzir em atrasos de pagamento e contatos no suporte técnico do seu provedor.
           </h1>
           <p class="hero-support">
             A 123zap reduz atrasos no pagamento e diminui a pressão no suporte técnico,
