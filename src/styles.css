@@ -61,7 +61,7 @@ a {
   border-bottom: 1px solid rgba(219, 227, 234, 0.86);
   display: flex;
   gap: 28px;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 14px clamp(20px, 4vw, 58px);
   position: relative;
   z-index: 10;
@@ -84,6 +84,7 @@ a {
   gap: 30px;
   font-size: 15px;
   font-weight: 650;
+  margin-left: auto;
 }
 
 .nav-links a {
@@ -629,10 +630,6 @@ tbody th {
 
   .brand {
     font-size: 27px;
-  }
-
-  .button-small {
-    width: 100%;
   }
 
   .hero-section {

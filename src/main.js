@@ -25,10 +25,6 @@ function render() {
           <a href="#resultados">Resultados</a>
           <a href="#graficos">Gráficos</a>
         </nav>
-        <a class="button button-small" href="https://123zap.com.br" target="_blank" rel="noreferrer">
-          ${icon('message', 18)}
-          Falar com a 123zap
-        </a>
       </header>
 
       <section id="top" class="hero-section">
