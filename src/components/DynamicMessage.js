@@ -2,6 +2,8 @@ import { formatCurrency, formatInteger, formatPercent } from '../utils/formatter
 import { icon } from '../icons.js';
 
 export function DynamicMessage(inputs, results, isValid) {
+  const customers = formatInteger(Number(inputs.recurringCustomers));
+  const fee = formatCurrency(Number(inputs.averageMonthlyFee));
   const beforeRate = formatPercent(results.lateRateBefore);
   const afterRate = formatPercent(results.lateRateAfter);
   const improvement = isValid ? formatCurrency(results.monthlyImprovement) : 'um valor válido';
@@ -17,19 +19,10 @@ export function DynamicMessage(inputs, results, isValid) {
         </button>
       </div>
       <div data-copy-text="dynamic-text">
-        <p>
-          Considerando que hoje você tenha ${beforeRate} de atrasos
-          e ao usar a 123zap esses atrasos caiam para ${afterRate}:
-        </p>
-        <ul>
-          <li>Você pode liberar aproximadamente <strong>${improvement}</strong> por mês em atrasos</li>
-          <li>Reduzir cerca de <strong>${reduction}</strong> contatos no suporte por mês</li>
-          <li>Porque menos clientes irão acionar o suporte</li>
-        </ul>
-        <p class="dynamic-footer">
-          Cálculo feito na Calculadora de Provedores 123zap<br />
-          acesse: https://provedores.123zap.com.br/
-        </p>
+        <p>Com <strong>${customers} clientes</strong> e mensalidade de <strong>${fee}</strong>, se você tiver <strong>${beforeRate}</strong> de atrasos, em um cenário com a 123zap esse número pode cair para <strong>${afterRate}</strong>:</p>
+        <ul><li>Você pode liberar aproximadamente <strong>${improvement}</strong> por mês em atrasos</li><li>Reduzir cerca de <strong>${reduction}</strong> contatos no suporte por mês</li><li>Porque menos clientes irão acionar o suporte</li></ul>
+        <p class="dynamic-footer">Cálculo feito na Calculadora de Provedores 123zap — acesse:
+https://provedores.123zap.com.br/</p>
       </div>
     </section>
   `;

@@ -1,6 +1,7 @@
 import { InputsCalculator } from './components/InputsCalculator.js';
 import { ResultsTable } from './components/ResultsTable.js';
 import { DynamicMessage } from './components/DynamicMessage.js';
+import { BillingRulerCTA, BillingRulerModal } from './components/BillingRuler.js';
 import { calculateResults, DEFAULT_INPUTS, validateInputs, IMPROVEMENT_OPTIONS } from './utils/calculator.js';
 import { formatCurrency, formatInteger, formatPercent } from './utils/formatters.js';
 import { icon } from './icons.js';
@@ -10,6 +11,8 @@ const root = document.getElementById('root');
 
 let activeField = null;
 let activeCaret = 0;
+
+let rulerStep = 0;
 
 function bar(label, formatted, value, other, className) {
   const max = Math.max(value, other, 1);
@@ -21,6 +24,51 @@ function bar(label, formatted, value, other, className) {
       <em>${label}</em>
     </div>
   `;
+}
+
+function mountRuler() {
+  const old = document.querySelector('.ruler-overlay');
+  if (old) old.remove();
+
+  const html = BillingRulerModal(rulerStep);
+  if (!html) return;
+
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = html;
+  const overlay = wrapper.firstElementChild;
+  if (!overlay) return;
+
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeRuler();
+  });
+
+  overlay.querySelector('[data-ruler-close]')?.addEventListener('click', closeRuler);
+
+  overlay.querySelector('[data-ruler-next]')?.addEventListener('click', () => {
+    if (rulerStep < 4) { rulerStep++; mountRuler(); }
+    else { closeRuler(); }
+  });
+
+  overlay.querySelector('[data-ruler-prev]')?.addEventListener('click', () => {
+    if (rulerStep > 1) { rulerStep--; mountRuler(); }
+  });
+
+  overlay.querySelectorAll('[data-ruler-dot]').forEach((dot) => {
+    dot.addEventListener('click', () => {
+      rulerStep = Number(dot.dataset.rulerDot);
+      mountRuler();
+    });
+  });
+}
+
+function closeRuler() {
+  const overlay = document.querySelector('.ruler-overlay');
+  if (overlay) overlay.remove();
+  document.body.style.overflow = '';
+  rulerStep = 0;
 }
 
 function render() {
@@ -36,11 +84,10 @@ function render() {
         <a class="brand" href="#top" aria-label="123zap">
           <img src="./assets/logo-principal-escura.svg" alt="123zap" />
         </a>
-        <nav class="nav-links" aria-label="Navegação">
-          <a href="#calculadora">Calculadora</a>
-          <a href="#resultados">Resultados</a>
-          <a href="#graficos">Gráficos</a>
-        </nav>
+        <a class="button button-small header-cta" href="https://123zap.com.br/" target="_blank" rel="noreferrer">
+          ${icon('external-link', 15)}
+          Conheça a 123zap
+        </a>
       </header>
 
       <section id="top" class="hero-section">
@@ -52,10 +99,7 @@ function render() {
             Muitos assinantes não pagam por descuido — esquecem ou priorizam outra conta porque foram lembrados dela. Se esse for o caso, a 123zap resolve: um lembrete no WhatsApp antes do bloqueio reduz a inadimplência e diminui os contatos no suporte.
           </p>
           <div class="hero-actions">
-            <a class="button button-large" href="https://123zap.com.br/" target="_blank" rel="noreferrer">
-              ${icon('message', 21)}
-              Falar com a 123zap
-            </a>
+            ${BillingRulerCTA()}
             <a
               class="button button-large button-secondary"
               href="https://youtu.be/aGFc7bdCrCw?si=3p8E9xBlfSG-8NHN"
@@ -66,6 +110,10 @@ function render() {
               Assistir demo
             </a>
           </div>
+          <a class="hero-link" href="https://123zap.com.br/" target="_blank" rel="noreferrer">
+            ${icon('external-link', 16)}
+            Conheça a 123zap
+          </a>
           <div class="trust-row" aria-label="Benefícios">
             <span>${icon('message', 20)} Lembretes via WhatsApp</span>
             <span>${icon('shield', 20)} Menos inadimplência</span>
@@ -104,7 +152,10 @@ function render() {
           </div>
 
           <div class="summary-notes">
-            <strong>Resumo da simulação atual</strong>
+            <div class="summary-notes-header">
+              ${icon('thumbs-up', 20)}
+              <strong>Resumo da simulação atual</strong>
+            </div>
             <span>
               ${formatInteger(results.lateCustomersBefore)} clientes em atraso hoje podem cair para
               ${formatInteger(results.lateCustomersAfter)} com a 123zap com o cenário
@@ -222,6 +273,22 @@ function bindEvents() {
       btn.classList.remove('copy-btn--done');
     }, 2000);
   });
+
 }
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const overlay = document.querySelector('.ruler-overlay');
+    if (overlay) closeRuler();
+  }
+});
+
+root.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-ruler-open]');
+  if (btn) {
+    rulerStep = 1;
+    mountRuler();
+  }
+});
 
 render();

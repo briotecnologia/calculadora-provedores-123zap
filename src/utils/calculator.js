@@ -6,9 +6,9 @@ export const PROFILE_OPTIONS = [
 ];
 
 export const IMPROVEMENT_OPTIONS = [
-  { label: 'Otimista', value: 'otimista', rate: 0.08 },
-  { label: 'Moderado', value: 'moderado', rate: 0.12 },
-  { label: 'Pessimista', value: 'pessimista', rate: 0.2 },
+  { label: 'Atrasos otimista', value: 'otimista', rate: 0.08 },
+  { label: 'Atrasos moderado', value: 'moderado', rate: 0.12 },
+  { label: 'Atrasos pessimista', value: 'pessimista', rate: 0.2 },
   { label: 'Personalizado', value: 'personalizado', rate: 0.12 },
 ];
 
