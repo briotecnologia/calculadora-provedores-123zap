@@ -46,11 +46,10 @@ function render() {
       <section id="top" class="hero-section">
         <div class="hero-copy">
           <h1>
-            Veja quanto a 123zap pode reduzir em atrasos de pagamento e contatos no suporte técnico do seu provedor.
+            Reduza atrasos e alivie o suporte técnico do seu provedor.
           </h1>
           <p class="hero-support">
-            A 123zap reduz atrasos no pagamento e diminui a pressão no suporte técnico,
-            lembrando o assinante no WhatsApp antes do bloqueio.
+            Muitos assinantes não pagam por descuido — esquecem ou priorizam outra conta porque foram lembrados dela. Se esse for o caso, a 123zap resolve: um lembrete no WhatsApp antes do bloqueio reduz a inadimplência e diminui os contatos no suporte.
           </p>
           <div class="hero-actions">
             <a class="button button-large" href="https://123zap.com.br/" target="_blank" rel="noreferrer">
