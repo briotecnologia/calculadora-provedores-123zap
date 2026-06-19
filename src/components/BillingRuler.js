@@ -3,28 +3,36 @@ import { icon } from '../icons.js';
 export const RULER_STEPS = [
   {
     key: 'd-2',
-    image: './assets/d-2.png',
+    webp: './assets/d-2.webp',
+    avif: './assets/d-2.avif',
+    png: './assets/d-2.png',
     title: 'D-2 | Dois dias antes do vencimento',
     description: 'Primeiro lembrete amigável sobre o vencimento que se aproxima.',
     tag: 'Lembrete preventivo',
   },
   {
     key: 'd-0',
-    image: './assets/d-0.png',
+    webp: './assets/d-0.webp',
+    avif: './assets/d-0.avif',
+    png: './assets/d-0.png',
     title: 'D-0 | Dia do vencimento',
     description: 'Notificação no dia do vencimento para evitar o atraso.',
     tag: 'Vencimento',
   },
   {
     key: 'd+1',
-    image: './assets/d+1.png',
+    webp: './assets/d+1.webp',
+    avif: './assets/d+1.avif',
+    png: './assets/d+1.png',
     title: 'D+1 | Um dia após o vencimento',
     description: 'Alerta de atraso com instruções para regularização.',
     tag: 'Atraso leve',
   },
   {
     key: 'd+7',
-    image: './assets/d+7.png',
+    webp: './assets/d+7.webp',
+    avif: './assets/d+7.avif',
+    png: './assets/d+7.png',
     title: 'D+7 | Sete dias após o vencimento',
     description: 'Cobrança com aviso de bloqueio dos serviços.',
     tag: 'Cobrança final',
@@ -63,7 +71,11 @@ export function BillingRulerModal(step) {
         <h3 class="ruler-title">${current.title}</h3>
 
         <div class="ruler-image-wrapper">
-          <img src="${current.image}" alt="${current.title}" class="ruler-image" />
+          <picture>
+            <source srcset="${current.webp}" type="image/webp" />
+            <source srcset="${current.avif}" type="image/avif" />
+            <img src="${current.png}" alt="${current.title}" class="ruler-image" />
+          </picture>
         </div>
 
         <p class="ruler-description">${current.description}</p>

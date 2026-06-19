@@ -35,8 +35,8 @@ export function ResultsTable(results, isValid) {
   ];
 
   return `
-    <div class="table-panel">
-      <h2>Antes vs. depois — provedor selecionado</h2>
+    <div class="table-panel table-desktop">
+      <h2>Impacto estimado no seu provedor</h2>
       <div class="table-scroll">
         <table>
           <thead>
@@ -62,6 +62,24 @@ export function ResultsTable(results, isValid) {
               .join('')}
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div class="table-panel table-mobile">
+      <h2>Impacto estimado no seu provedor</h2>
+      <div class="results-cards">
+        ${rows
+          .map(
+            (row) => `
+              <div class="result-card">
+                <h3>${row.metric}</h3>
+                <div class="result-card-row"><span>Sem a 123zap</span><span>${row.before}</span></div>
+                <div class="result-card-row"><span>Com 123zap</span><span>${row.after}</span></div>
+                <div class="result-card-row result-card-improvement ${isValid ? '' : 'result-card-muted'}"><span>Melhoria</span><span>${row.improvement}</span></div>
+              </div>
+            `,
+          )
+          .join('')}
       </div>
     </div>
   `;

@@ -96,7 +96,10 @@ function render() {
             Reduza atrasos e alivie o suporte técnico do seu provedor.
           </h1>
           <p class="hero-support">
-            Muitos assinantes não pagam por descuido — esquecem ou priorizam outra conta porque foram lembrados dela. Se esse for o caso, a 123zap resolve: um lembrete no WhatsApp antes do bloqueio reduz a inadimplência e diminui os contatos no suporte.
+            Muitos assinantes não pagam por descuido — esquecem ou priorizam outra conta porque foram lembrados dela. Se esse for o caso, a 123zap resolve: um lembrete no WhatsApp antes do bloqueio reduz os atrasos e diminui os contatos no suporte.
+          </p>
+          <p class="hero-credibilidade">
+            Com base em centenas de provedores que usam a 123zap, a taxa de atrasos padrão do mercado costuma ficar entre 40% e 50%. <strong>Com uma régua de cobrança automatizada via WhatsApp, esse número pode cair para 8% a 12%.</strong>
           </p>
           <div class="hero-actions">
             ${BillingRulerCTA()}
@@ -114,11 +117,6 @@ function render() {
             ${icon('external-link', 16)}
             Conheça a 123zap
           </a>
-          <div class="trust-row" aria-label="Benefícios">
-            <span>${icon('message', 20)} Lembretes via WhatsApp</span>
-            <span>${icon('shield', 20)} Menos inadimplência</span>
-            <span>${icon('headphones', 20)} Menos pressão no suporte</span>
-          </div>
         </div>
 
         <section id="calculadora" class="calculator-panel" aria-labelledby="calculator-title">

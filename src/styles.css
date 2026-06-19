@@ -201,29 +201,20 @@ h1 {
   color: var(--slate-700);
   font-size: 18px;
   line-height: 1.45;
-  margin: 14px 0 28px 0;
+  margin: 14px 0 18px 0;
   max-width: 620px;
 }
 
-.trust-row {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.trust-row span {
-  align-items: center;
+.hero-credibilidade {
   color: var(--slate-600);
-  display: inline-flex;
   font-size: 14px;
-  gap: 8px;
-  line-height: 1.25;
+  line-height: 1.5;
+  margin: 0 0 22px 0;
+  max-width: 620px;
 }
 
-.trust-row svg {
-  color: var(--purple);
-  flex: 0 0 auto;
+.hero-credibilidade strong {
+  color: var(--purple-dark);
 }
 
 .calculator-panel,
@@ -529,6 +520,64 @@ tbody th {
 .muted-cell {
   color: var(--slate-400);
   font-weight: 800;
+}
+
+.table-desktop {
+  display: block;
+}
+
+.table-mobile {
+  display: none;
+}
+
+.results-cards {
+  display: grid;
+  gap: 12px;
+}
+
+.result-card {
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.result-card h3 {
+  color: var(--slate-700);
+  font-size: 13px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+}
+
+.result-card-row {
+  align-items: center;
+  color: var(--slate-600);
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.result-card-improvement {
+  border-top: 1px solid var(--slate-200);
+  color: var(--purple-dark);
+  font-weight: 800;
+  margin-top: 4px;
+  padding-top: 8px;
+}
+
+.result-card-muted {
+  color: var(--slate-400);
+}
+
+@media (max-width: 600px) {
+  .table-desktop {
+    display: none;
+  }
+
+  .table-mobile {
+    display: block;
+  }
 }
 
 .message-and-charts {
