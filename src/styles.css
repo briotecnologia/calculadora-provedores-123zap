@@ -265,15 +265,22 @@ h1 {
 
 .field > span {
   color: var(--slate-800);
+  display: flex;
+  align-items: flex-end;
   font-size: 15px;
   font-weight: 760;
+  line-height: 1.2;
+  min-height: 36px;
 }
 
 .field small {
   color: var(--muted);
+  display: block;
   font-size: 13px;
   font-weight: 400;
+  line-height: 1.35;
   margin-top: -4px;
+  min-height: 36px;
 }
 
 .input-shell,
@@ -865,6 +872,11 @@ tbody th {
   .inputs-grid,
   .summary-grid {
     grid-template-columns: 1fr;
+  }
+
+  .field > span,
+  .field small {
+    min-height: 0;
   }
 
   .summary-card {

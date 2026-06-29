@@ -10,12 +10,23 @@ const publicFiles = [
   'src/utils/calculator.js',
   'src/utils/formatters.js',
   'src/components/InputsCalculator.js',
-  'src/components/SummaryCards.js',
   'src/components/ResultsTable.js',
   'src/components/DynamicMessage.js',
-  'src/components/Charts.js',
+  'src/components/BillingRuler.js',
   'public/screenshot.jpeg',
   'assets/logo-principal-escura.svg',
+  'assets/d-2.webp',
+  'assets/d-2.avif',
+  'assets/d-2.png',
+  'assets/d-0.webp',
+  'assets/d-0.avif',
+  'assets/d-0.png',
+  'assets/d+1.webp',
+  'assets/d+1.avif',
+  'assets/d+1.png',
+  'assets/d+7.webp',
+  'assets/d+7.avif',
+  'assets/d+7.png',
 ];
 
 const mimeTypes = {
@@ -26,6 +37,8 @@ const mimeTypes = {
   '.jpeg': 'image/jpeg',
   '.jpg': 'image/jpeg',
   '.png': 'image/png',
+  '.webp': 'image/webp',
+  '.avif': 'image/avif',
   '.svg': 'image/svg+xml',
 };
 

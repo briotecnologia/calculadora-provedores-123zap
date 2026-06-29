@@ -98,7 +98,7 @@ export function validateInputs(inputs) {
   }
 
   if (!Number.isFinite(fee) || fee <= 0) {
-    messages.push('Mensalidade média deve ser maior que zero.');
+    messages.push('Mensalidade média dos seus clientes deve ser maior que zero.');
   }
 
   if (!Number.isFinite(profileRate) || profileRate < 0 || profileRate > 1) {
